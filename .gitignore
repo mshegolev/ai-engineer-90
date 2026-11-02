@@ -1,0 +1,39 @@
+# Python
+*.pyc
+__pycache__/
+venv/
+.env
+.pytest_cache/
+uv.lock
+
+# Virtual environments/.venv
+.git-python-version/
+
+# Logs
+*.log
+logs/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+sbt-boot
+build/
+*/.tox/
+
+# Testing
+.coverage/
+.pytest_cache/
+.hypothesis/
+.pytest_cache/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Jira API response format
+jira-response.json
+
+# Temporary files
+*.swp
+*.tmp
