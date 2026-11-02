@@ -40,14 +40,20 @@ def validate_ticket(data: dict) -> dict:
             "errors": errors,
         }
 
-def validate_with_retry(generate, max_attempts=3):
+def validate_with_retry(generate, max_attempts: int=3):
     """  
-        # Здесь нужно проверить данные
-        # Если данные корректны — вернуть COMPLETED
-        # Если нет — перейти к следующей попытке
+        Здесь нужно проверить данные
+        Если данные корректны — вернуть COMPLETED
+        Если нет — перейти к следующей попытке
     """
+    if max_attempts < 1:
+        raise ValueError("max_attempts must be >= 1")
+    if isinstance(max_attempts, bool) or not isinstance(max_attempts, int):
+        raise TypeError('max_attempts must be an integer')
+
+
     attempt = 0
-    for attempt in range(1,max_attempts+1,1):
+    for attempt in range(1, max_attempts+1):
         data = generate()
         ticket  = validate_ticket(data=data)
         if ticket['status'] == 'valid':
@@ -70,5 +76,4 @@ result = validate_with_retry(
     generate_invalid_ticket,
     max_attempts=3,
 )
-
 print(result)
